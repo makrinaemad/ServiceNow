@@ -1,0 +1,46 @@
+*{
+  margin: 0;
+  padding: 0;
+
+}
+
+.logo span:first-child {
+  color: white;
+}
+
+.logo span:last-child {
+  color: yellow;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color:green;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #111111;
+}
+
+footer {
+  
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  background-color:black;
+  color: white;
+}

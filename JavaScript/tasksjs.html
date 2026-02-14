@@ -1,0 +1,203 @@
+<script>
+    //task 1
+
+//     let login=prompt("login", "");
+// if (login=="Admin"){
+//     let password=prompt("Enter password", "");
+//     if (password=="TheMaster"){
+//         alert("Welcome!");}
+//     else if (password=="" || password==null){
+//         alert("Canceled");}
+//     else{
+//         alert("Wrong password");
+//     }}
+
+// else if (login=="" || login==null)
+// {
+//     alert("Canceled");
+// }
+
+// else{
+//     alert("I do not know you!");}
+
+//----------------------------------------------------------------------------------------------------
+
+//task 2
+
+
+// let number=0;
+
+// while (number<100 ){
+//     number=prompt("Enter a number >100 ", "");
+//    if (number>100 ||number==null || number==""){
+//      alert("Cancelled");
+//     break;
+//    }
+// }
+
+// do {
+//     number=prompt("Enter a number >100 ", "");
+//    if (number>100 ||number==null || number==""){
+//      alert("Cancelled");
+//    }
+
+// } while (number<100);
+
+
+//task3
+//print all prime numbers
+
+
+// let n=prompt("Enter a number", "");
+
+// if (n>1){
+//     for (let j=2; j<=n; j++){
+//         let prime=true;
+
+//     for (let i=2; i<j; i++){
+//         if (j%i==0){
+//            prime=false;
+//            break;
+//         }
+//     }
+
+//     if(prime){
+//          alert(j);
+//     }
+// }
+// }
+// else{
+//     alert("no prime numbers");
+// }
+
+
+
+//task4
+//student management system
+
+let close=true;
+let students=[];
+
+while(close){ 
+
+let student=
+   {
+ name:"",
+ age:0, 
+ grades:[]
+   };
+
+   let evaluation={
+    average:0,
+    classification:"",
+    maxGrade:0,
+    minGrade:0,
+    totalGrades:0,
+    status:""
+   };
+
+ student.name=prompt("Enter name", "");
+ student.age=Number(prompt("Enter age", ""));
+
+ do{
+     let grade=prompt("Enter grade", "");
+     if (grade==="stop" && student.grades.length<3){
+            alert("Please enter at least 3 grades before stopping.");
+            continue;}
+     else if (grade==="stop"){
+                break; } 
+     
+     else if (grade>100 || grade<0 || grade==""||!Number(grade)){
+         alert("Invalid grade. Please enter a number between 0 and 100.");
+         continue;
+     }
+     student.grades.push(grade); 
+    
+    }
+     while (true);
+
+evaluation.average=0;
+for (let i=0; i<student.grades.length; i++){ 
+    evaluation.average+=Number(student.grades[i]);
+    }
+ 
+  evaluation.average=evaluation.average/student.grades.length;
+
+// average=student.grades.reduce((a,b)=>a+Number(b),0)/student.grades.length;
+
+evaluation.maxGrade=Math.max(...student.grades); 
+evaluation.minGrade=Math.min(...student.grades);
+
+evaluation.status=evaluation.average>=60 ? "Passed" : "Failed";
+evaluation.classification=evaluation.average>=90 ? "Excellent" : evaluation.average>=80 ? "Very Good" : evaluation.average>=70 ? "Good" : evaluation.average>=60 ? "Pass" : "Fail";
+evaluation.totalGrades=student.grades.length;
+
+let currentStudent={...student, ...evaluation}; 
+students.push(currentStudent);
+
+for (let i=0; i<students.length; i++)
+{ let s=students[i];
+     alert(`Student Name: ${s.name}\n
+      Age: ${s.age}\n
+      Grades: ${s.grades.join(", ")}\n
+      Average Grade: ${s.average}\n
+      Max Grade: ${s.maxGrade}\n
+      Min Grade: ${s.minGrade}\n
+      Status: ${s.status}\n
+      Classification: ${s.classification}\n
+      Total Grades: ${s.totalGrades}\n\n `)  ; }
+
+alert(
+    students.map(s => `Student Name: ${s.name}\nAverage Grade: ${s.average}\n`).join(""))
+
+ while (true){
+let answer=prompt("Do you want to enter another student? (yes/no)", "");
+
+ if (answer.toLowerCase()==="no")
+ {   alert("Goodbye!");
+    close=false; 
+    break; }
+
+  else if (answer.toLowerCase()==="yes")
+  { break; } 
+
+  else
+  { alert("Please answer with 'yes' or 'no'."); }
+ }
+
+}
+
+
+
+// task 5
+// function pow(x, n) {
+//     let result = x;
+  
+
+//     for (let i = 1; i < n; i++) {
+//       result *= x;
+//     }
+  
+//     return result;
+//   }
+  
+//   let x = prompt("Enter num1", "");
+//   let n = prompt("Enter num2", "");
+  
+//   if (n < 1) {
+//     alert(`Power is not supported, use a positive integer`);
+//   }
+
+//    else {
+//     alert(pow(x, n));
+//   }
+
+//   let sayHello = function(name) {
+//     alert(`Hello, ${name}!`);
+//   };
+
+
+
+
+
+</script>

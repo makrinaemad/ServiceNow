@@ -1,0 +1,16 @@
+h1 {
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 40px;
+}
+
+.p {
+  text-align: center;
+  margin-top: 20px;
+}
+div {
+  padding: 50px 100px 50px 100px;
+  margin: 50px 200px 175px 200px;
+ background-color: #f1f1f1;
+
+}
