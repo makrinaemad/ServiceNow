@@ -1,0 +1,119 @@
+<!-- task1----------------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+  <h1>Todo App</h1>
+
+  <h3>Tasks Tasks: <span id="counter">0</span></h3>
+
+  <div id="myDiv"></div>
+
+  <p>Tasks</p>
+  <input type="text" id="myInput">
+  <button onclick="addTask()">Add Task</button>
+
+  <script>
+    let count = 0;
+
+    function addTask() {
+      let input = document.getElementById("myInput");
+      let div = document.getElementById("myDiv");
+      let counter = document.getElementById("counter");
+
+    
+      let taskDiv = document.createElement("div");
+
+      let taskText = document.createElement("span");
+      taskText.innerText = input.value;
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.innerText = "Delete";
+
+      deleteBtn.onclick = function () {
+        taskDiv.remove();  
+        count--;         
+        counter.innerText = count;
+      };
+
+      
+      taskDiv.append(taskText);
+      taskDiv.append(" ");
+      taskDiv.append(deleteBtn);
+
+     
+      div.append(taskDiv);
+
+      count++;
+      counter.innerText = count;
+
+      input.value = "";
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+
+<!-- task2------------------------------------------------- -->
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+<script>
+
+let password = prompt ("pass","");
+
+try{
+if (password.length<8){
+
+throw new Error("not accepted");
+
+}
+console.log("password accepted");
+}
+catch(error){
+            console.error(error.message)
+        }
+        finally{
+            console.log("bey!")
+        }
+
+
+</script>
+</body>
+</html> -->
+
+
+
+
+
+<!-- task3------------------------------------------------ -->
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+<script>
+function message(){
+    let secret = "My secret message";
+    return{
+        updateMes: function(mes){
+            secret= mes;
+            console.log("Updated message: "+secret);
+        },
+        readMes: function(){
+          console.log("Read current message: "+secret);
+        }
+    }
+}
+
+
+let mes = message();
+mes.readMes();
+mes.updateMes("new message");
+mes.readMes();
+
+</script>
+</body>
+</html>  -->
