@@ -1,0 +1,189 @@
+<!-- Library Management System -->
+
+<script>
+let library = [];
+let close = true;
+
+
+function getBook(title) {
+  return library.find(
+    (b) => b.title.toLowerCase() === title.toLowerCase()
+  );
+}
+
+function getStatus(availableCopies) {
+  if (availableCopies > 2) return "Available";
+  if (availableCopies >= 1 && availableCopies <= 2) return "Limited";
+  return "Out of Stock";
+}
+//add
+function addBook() {
+  let title = prompt("Enter Book Title:", "");
+  if (!title || title.trim() === "") {
+    alert("Book title cannot be empty.");
+    return;
+  }
+
+  let author = prompt("Enter Author Name:", "");
+  if (!author || author.trim() === "") {
+    alert("Author name cannot be empty.");
+    return;
+  }
+
+  let copies = Number(prompt("Enter Number of Copies:", ""));
+  if (isNaN(copies) || copies <= 0) {
+    alert("Copies must be a number greater than 0.");
+    return;
+  }
+
+  let existing = getBook(title);
+
+  if (existing) {
+    existing.availableCopies += copies;
+    alert(`Book already exists! Copies added successfully.\nAvailable Copies Now: ${existing.availableCopies}`);
+  } else {
+    let book = {
+      title: title.trim(),
+      author: author.trim(),
+      availableCopies: copies,
+      borrowedCopies: 0,
+      borrowCount: 0 
+    };
+
+    library.push(book);
+    alert("Book added successfully!");
+  }
+}
+
+//borrow
+function borrowBook() {
+  let title = prompt("Enter Book Title to Borrow:", "");
+  if (!title || title.trim() === "") {
+    alert("Book title cannot be empty.");
+    return;
+  }
+
+  let book = getBook(title);
+
+  if (!book) {
+    alert("Book not found in library.");
+    return;
+  }
+
+  if (book.availableCopies === 0) {
+    alert("No available copies. Book is out of stock.");
+    return;
+  }
+
+  book.availableCopies--;
+  book.borrowedCopies++;
+  book.borrowCount++;
+
+  alert(`Book borrowed successfully!\nTitle: ${book.title}`);
+}
+
+//return
+function returnBook() {
+  let title = prompt("Enter Book Title to Return:", "");
+  if (!title || title.trim() === "") {
+    alert("Book title cannot be empty.");
+    return;
+  }
+
+  let book = getBook(title);
+
+  if (!book) {
+    alert("Book not found in library.");
+    return;
+  }
+
+  if (book.borrowedCopies === 0) {
+    alert("This book has no borrowed copies to return.");
+    return;
+  }
+
+  book.availableCopies++;
+  book.borrowedCopies--;
+
+  alert(`Book returned successfully!\nTitle: ${book.title}`);
+}
+
+
+function calculateTotalBooks() {
+  let totalAvailable = 0;
+  let totalBorrowed = 0;
+
+  for (let i = 0; i < library.length; i++) {
+    totalAvailable += library[i].availableCopies;
+    totalBorrowed += library[i].borrowedCopies;
+  }
+
+  return { totalAvailable, totalBorrowed };
+}
+
+//show
+function showReport() {
+  if (library.length === 0) {
+    alert("Library is empty.please add books.");
+    return;
+  }
+
+  let report = "Library Report\n";
+
+  for (let i = 0; i < library.length; i++) {
+    let b = library[i];
+    let status = getStatus(b.availableCopies);
+
+    report += `Book: ${b.title}\n`;
+    report += `Author: ${b.author}\n`;
+    report += `Available Copies: ${b.availableCopies}\n`;
+    report += `Borrowed Copies: ${b.borrowedCopies}\n`;
+    report += `Status: ${status}\n`;
+    report += `Borrow count till now: ${b.borrowCount}\n`;
+    report += `-----------------------------\n`;
+  }
+
+  let totals = calculateTotalBooks();
+  report += `\n#Available Books: ${totals.totalAvailable}\n`;
+  report += `#Borrowed Books: ${totals.totalBorrowed}\n`;
+
+  alert(report);
+}
+
+while (close) {
+  let choice = prompt(
+      "1 → Add New Book\n" +
+      "2 → Borrow Book\n" +
+      "3 → Return Book\n" +
+      "4 → Show Library Report\n" +
+      "5 → Exit\n" +
+      "Enter your choice:", ""  );
+
+  switch (choice) {
+    case "1":
+      addBook();
+      break;
+
+    case "2":
+      borrowBook();
+      break;
+
+    case "3":
+      returnBook();
+      break;
+
+    case "4":
+      showReport();
+      break;
+
+    case "5":
+      alert("Goodbye");
+      close = false;
+      break;
+
+    default:
+      alert("invalid. please enter a number from 1 to 5.");
+  }
+}
+
+</script>
