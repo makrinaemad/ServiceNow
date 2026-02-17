@@ -1,0 +1,90 @@
+ <!-- task1-------------------------------------------------- -->
+
+
+<!-- <!DOCTYPE html>
+<html >
+  <p>Weather</p>
+  <input type="text" id="myInput">
+<button onclick="show()">Click me</button>
+<div id="myDiv"></div>
+</html>
+<script>
+
+      let input = document.getElementById("myInput");
+      let div = document.getElementById("myDiv");
+     let result = document.createElement("p");
+      result.innerText = "loading.........";
+    function getWeather(city){
+
+     return new Promise((resolve,reject) => {
+          
+          setTimeout(() => { 
+            if(city==='paris')      
+            resolve('success');
+        else
+           reject('error');
+        },2000)   
+           
+     })
+    }
+
+   async function show(){
+     div.append(result);
+        try{
+            let city= await getWeather(input.value);
+
+            result.innerText=city;
+            div.append(result);
+        }
+        catch(err){
+            result.innerText=err;
+            div.append(result);
+        }
+    }
+</script> -->
+
+
+
+
+<!-- task2--------------------------------------------------------------------- -->
+<!--  
+<script>
+
+    async function getUserTodo(){
+try{
+    const res= await fetch('https://jsonplaceholder.typicode.com/todos');
+    const todos= await res.json();
+    let counter=0;
+    let longTitles=[];
+
+    let newArray=[];
+    for (let i=0;i<todos.length;i++){
+        if (todos[i].completed)
+        counter++;
+        if(todos[i].title.length>20)
+          longTitles.push(todos[i].title);
+      let task={
+       id: todos[i].id,
+        titleLen: todos[i].title.length}
+        newArray.push(task);
+    } 
+
+    console.log(`completed todo count= ${counter}\n`);
+    for (let i=0;i<newArray.length;i++)
+          console.log(`id: ${newArray[i].id}, Title: ${newArray[i].titleLen}`);
+
+   console.log("Long titles list: \n");
+        for (let i=0;i<longTitles.length;i++)
+                console.log(`${longTitles[i]}\n`);
+}
+catch(err){
+    console.error("Error: ",err.message)
+}
+
+    }
+
+     getUserTodo();
+
+
+
+</script> -->
