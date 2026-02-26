@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly xmlns:j="jelly:core">
+
+<!-- task1 array of objects **HashMap** -->
+  <h2>Task1 list of objects:</h2>
+
+<j:new className="java.util.ArrayList" var="arr"/>
+
+
+<j:new className="java.util.HashMap" var="user1"/>
+
+<j:invoke on="${user1}" method="put">
+  <j:arg value="name"/>
+   <j:arg value="Makrina"/>
+   </j:invoke>
+
+<j:invoke on="${user1}" method="put">
+  <j:arg value="age"/>
+   <j:arg value="20"/>
+   </j:invoke>
+
+   <j:invoke on="${user1}" method="put">
+  <j:arg value="city"/>
+   <j:arg value="Cairo"/>
+   </j:invoke>
+
+<!-- get name value -->
+
+<j:invoke on="${user1}" method="get" var="username">
+  <j:arg value="name"/>
+  </j:invoke>
+
+  <h3>Get Name for user1: ${username}</h3>
+
+<!-- add user1 to the array -->
+
+  <j:invoke on="${arr}" method="add">
+  <j:arg value="${user1}"/>
+   </j:invoke>
+  
+
+  <!-- *********************** -->
+
+<j:new className="java.util.HashMap" var="user2"/>
+
+<j:invoke on="${user2}" method="put">
+  <j:arg value="name"/>
+   <j:arg value="Mariam"/>
+   </j:invoke>
+
+<j:invoke on="${user2}" method="put">
+  <j:arg value="age"/>
+   <j:arg value="15"/>
+   </j:invoke>
+
+   <j:invoke on="${user2}" method="put">
+  <j:arg value="city"/>
+   <j:arg value="New York"/>
+   </j:invoke>
+
+  <j:invoke on="${arr}" method="add">
+  <j:arg value="${user2}"/>
+   </j:invoke>
+
+<!-- **************************************** -->
+
+<j:new className="java.util.HashMap" var="user3"/>
+
+<j:invoke on="${user3}" method="put">
+  <j:arg value="name"/>
+   <j:arg value="Emad"/>
+   </j:invoke>
+
+<j:invoke on="${user3}" method="put">
+  <j:arg value="age"/>
+   <j:arg value="50"/>
+   </j:invoke>
+
+   <j:invoke on="${user3}" method="put">
+  <j:arg value="city"/>
+   <j:arg value="Cairo"/>
+   </j:invoke>
+
+  <j:invoke on="${arr}" method="add">
+  <j:arg value="${user3}"/>
+   </j:invoke>
+
+<!-- ********************************************** -->
+
+
+<table border="1">
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>City</th>
+</tr>
+
+<j:forEach var="person" items="${arr}">
+<tr>
+<td>${person.name}</td>
+<td>${person.age}</td>
+<td>${person.city}</td>
+</tr>
+</j:forEach>
+
+</table>
+
+<style>
+th {
+    background-color: yellow;
+}
+td {
+    background-color: orange;
+}
+</style>
+
+
+
+<!-- task2 functions -->
+  <j:set var="num" value="15"/>
+
+
+<j:new className="com.example.SimpleFunctions" var="fun"/>
+<h2>Task2 Functions:</h2>
+<h3>Your Number is ${fun.checkEvenOrOdd(15)}</h3>
+
+</j:jelly>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myapp">
+    <div ng-controller="ctrl">
+  <h1>Hello {{name}}</h1>
+</div>
+</div>
+
+<script>
+
+    var app=angular.module('myapp',[]);
+    app.controller('ctrl',function($scope){
+    $scope.name="Makrina";
+    });
+
+</script>
+</body>
+</html>

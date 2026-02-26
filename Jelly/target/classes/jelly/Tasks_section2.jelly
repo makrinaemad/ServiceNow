@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly xmlns:j="jelly:core">
+
+<h2>Task1 Date Time Format:</h2>
+
+<j:new className="java.util.Date"  var="now"/>
+<h1>current date/time: ${now}</h1>
+
+<j:invoke on="${now}" method="getTime" var="timestamp"/>
+<h1>timestamp: ${timestamp} milliseconds</h1>
+
+<j:new className="java.text.SimpleDateFormat" var="formatter">
+<j:arg value="yyyy-MM-dd HH:mm:ss"/>
+</j:new>
+
+<!-- Task1 Date Time Format-->
+<j:invoke on="${formatter}" method="parse" var="custom">
+  <j:arg value="2025-12-25 15:30:00"/>
+</j:invoke>
+
+<h2>Custom Date: ${custom}</h2>
+
+
+
+<j:new className="java.text.SimpleDateFormat" var="yearFormatter">
+  <j:arg value="yyyy"/>
+</j:new>
+
+<j:invoke on="${yearFormatter}" method="format" var="year">
+  <j:arg value="${custom}"/>
+</j:invoke>
+
+
+<j:new className="java.text.SimpleDateFormat" var="monthFormatter">
+  <j:arg value="MM"/>
+</j:new>
+
+<j:invoke on="${monthFormatter}" method="format" var="month">
+  <j:arg value="${custom}"/>
+</j:invoke>
+
+<j:new className="java.text.SimpleDateFormat" var="dayFormatter">
+  <j:arg value="dd"/>
+</j:new>
+
+<j:invoke on="${dayFormatter}" method="format" var="day">
+  <j:arg value="${custom}"/>
+</j:invoke>
+
+<h2>Custom Date Format:  Year: ${year}, Month: ${month}, Day: ${day}</h2>
+
+
+
+<!-- task2 methods random number -->
+<h2>******************************************************</h2>
+<h2>Task2 Random number:</h2>
+<j:new className="java.util.Random" var="random"/>
+
+
+
+<h2>Random number (0 to 99): ${random.nextInt(100)}</h2> 
+
+</j:jelly>
