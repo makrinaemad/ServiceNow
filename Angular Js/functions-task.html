@@ -1,0 +1,109 @@
+<!-- filters -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+img {
+  height: 200px;      
+  object-fit: contain; 
+  background-color: #f8f9fa; 
+}
+</style>
+</head>
+<body>
+
+<div ng-app="myapp">
+    <div ng-controller="ctrl">
+
+
+<div class="container mt-5">
+  <div class="row">
+<div class="col-md-4 mb-4" ng-repeat="product in products">
+<card></card>
+</div>
+  </div>
+</div>
+
+
+<counter count="c"></counter>
+</div>
+</div>
+
+<script>
+
+    var app=angular.module('myapp',[]);
+
+   app.filter('uppercase', function() {
+       return function(input) {
+           if (input) {
+               firstChar = input[0].toUpperCase();
+               return firstChar + input.slice(1);
+           }
+           return input;
+       };
+   });
+   app.filter('double', function() {
+    return function(input) {
+        if (!isNaN(input)) {
+            return input * 2;
+        }
+        return input;
+    };
+});
+
+    app.controller('ctrl',function($scope){
+         $scope.c = 0;
+        $scope.products = [
+            {name: "Product 1", price: 250, img: "images/img1.jpg"},
+            {name: "Product 2", price: 300, img: "images/img2.jpg"},
+            {name: "Product 3", price: 150, img: "images/img3.jpg"}
+        ];
+
+       
+    });
+    
+
+    app.directive('card', function() {
+        return {
+            template: `
+          <div mb-4">
+      <div class="card shadow-sm h-100">
+        <img src="{{product.img}}" alt="Product Image">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text"> {{product.price}} </p>
+          <a href="#" class="btn btn-primary mt-auto">Add to Cart</a>
+        </div>
+      </div>
+    </div>`}});
+
+    app.directive('counter', function() {
+        return {
+            scope:{
+            count: '='
+            },
+            template: `
+            <div class="counter">
+                <h3>{{count}}</h3>
+                <button class="btn btn-success" ng-click="increment()">Increment</button>
+                <button class="btn btn-danger" ng-click="decrement()">Decrement</button>
+            </div>`,
+            link: function($scope) {
+                $scope.increment = function() {
+                    $scope.count++;
+                };
+                $scope.decrement = function() {
+                    $scope.count--;
+                };
+            }
+        };
+    });
+
+</script>
+
+</body>
+</html>
