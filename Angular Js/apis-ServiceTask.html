@@ -11,7 +11,7 @@
 
     <style>
         body {
-            background-color: gray;
+            background-color: rgb(128, 128, 128);
         }
 
         .form-container {
@@ -82,7 +82,8 @@
                 <th>StudentName</th>
                 <th>Email</th>
                 <th>Created at</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -90,7 +91,8 @@
                 <td>{{ $index + 1 }}</td>
                 <td>{{ student.name }}</td>
                 <td>{{ student.email }}</td>
-                <td>{{ student.created_at | date:'short' }}</td>
+                <td>{{ student.created_at | date:'short'}}</td>
+                <td><button class="btn btn-secondary btn-sm" ng-click="edit($index)">Edit</button></td>
                 <td><button class="btn btn-danger btn-sm" ng-click="delete($index)">Delete</button></td>
             </tr>
         </tbody>
@@ -137,6 +139,26 @@
                         console.error("Error adding student:", error);
                     });
                 };
+                $scope.delete = function($index) {
+                    let studentId = $scope.students[$index].id; 
+                    StudentService.deleteStudent(studentId).then(function(response) {
+                        $scope.renderTable();
+                    }).catch(function(error) {
+                        console.error("Error deleting student:", error);
+                    });
+                };
+                $scope.edit = function($index) {
+                    let studentId = $scope.students[$index].id; 
+                    let updatedData = {
+                        name: prompt("Enter new name:", $scope.students[$index].name),
+                        email: prompt("Enter new email:", $scope.students[$index].email)
+                    };
+                    StudentService.editStudent(studentId, updatedData).then(function(response) {
+                        $scope.renderTable();
+                    }).catch(function(error) {
+                        console.error("Error editing student:", error);
+                    });
+                };
 
 
    });
@@ -154,6 +176,12 @@
 
     this.addStudent = function(studentData) {
         return $http.post(apiLink, studentData, { headers: headers });
+    };
+    this.deleteStudent = function(studentId) {
+        return $http.delete(apiLink + '?id=eq.' + studentId, { headers: headers });
+    };
+    this.editStudent = function(studentId, studentData) {
+        return $http.patch(apiLink + '?id=eq.' + studentId, studentData, { headers: headers });
     };
 
 });

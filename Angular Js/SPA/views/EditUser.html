@@ -1,0 +1,36 @@
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card shadow-sm p-4">
+    <h3 class="text-center mb-4">Edit Profile</h3>
+
+    <form name="editForm" novalidate>
+
+      <!-- Name Field -->
+      <div class="mb-3">
+        <label class="form-label fw-bold">Name</label>
+        <input type="text"
+               class="form-control"
+               placeholder="Enter your name"
+               ng-model="user.name"
+               name="name"
+               required>
+        <div ng-show="editForm.name.$touched && editForm.name.$invalid" class="text-danger mt-1 small">
+          Name is required.
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label class="form-label fw-bold">Email</label>
+        <input type="email"
+               class="form-control"
+               placeholder="Enter your email"
+               ng-model="user.email"
+               name="email"
+               required>
+        <div ng-show="editForm.email.$touched && editForm.email.$invalid" class="text-danger mt-1 small">
+          Valid email is required.
+        </div>
+      </div>
+
+      <!-- Save Button -->
+     
